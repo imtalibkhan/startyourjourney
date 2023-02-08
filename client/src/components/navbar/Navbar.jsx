@@ -1,10 +1,17 @@
-import React from "react";
+import  { useState } from "react";
 import classes from "./navbar.module.css";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  window.onscroll=() => {
+    setIsScrolled(window.pageYOffset===0 ? false: true)
+    return ()=> (window.onscroll=null)
+  }
+
   return (
-    <div className={classes.container}>
+    <div className={`${classes.container} ${isScrolled && classes.scrolled}`}>
       <div className={classes.wrapper}>
         <div className={classes.left}>
           <Link to="/">
@@ -21,8 +28,8 @@ const Navbar = () => {
         </div>
 
         <div className={classes.right}>
-          <Link to="./login">Login</Link>
-          <Link to="./signup">Signup</Link>
+          <Link className={classes.login} to="./login">Login</Link>
+          <Link className={classes.signup} to="./signup">Signup</Link>
         </div>
       </div>
     </div>

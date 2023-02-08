@@ -1,9 +1,16 @@
 import React from 'react'
+import About from '../about/About'
 import classes from "./home.module.css"
+import Types from "../type/Type"
+import SuggestedPlace from '../suggestedPlaces/SuggestedPlace'
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+       <About />
+        <Types />
+        <SuggestedPlace />
+    </div>
   )
 }
 
