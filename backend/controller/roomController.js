@@ -51,6 +51,19 @@ roomController.get('/find/:id', async (req, res) => {
     }
 })
 
+// roomController.get('/find/types', async(req,res)=> {
+//     try {
+//         const apartment = await Room.find({type: 'apartment'}).countDocuments()
+//         const villa = await Room.find({type: 'villa'}).countDocuments()
+//         const penthouse = await Room.find({type: 'penthouse'}).countDocuments()
+//         const bungalow = await Room.find({type: 'bungalow'}).countDocuments()
+//         return res.status(200).json({apartment,villa,penthouse,bungalow})
+//     }
+//     catch (error) {
+//         console.log(error.message)
+//     }
+// })
+
 // create
 roomController.post('/', verifyTokenAdmin, async (req, res) => {
     try {
