@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux"
 import {useNavigate} from "react-router-dom"
 import { login } from '../../redux/authSlice'
 import img from "../../assets/img7.jpg"
+import { Link } from 'react-router-dom'
 
 const Login = () => {
     const [email,setEmail] = useState("")
@@ -50,7 +51,7 @@ const Login = () => {
            <input type="email" placeholder="Type email..." onChange={(e)=> setEmail(e.target.value)}/>
            <input type="password" placeholder="Type password..." onChange={(e)=> setPassword(e.target.value)}/>
            <button className={classes.submitBtn}>Login</button>
-           {/* <p>Don't have an account? <Link to='/signup'>Sign up</Link></p> */}
+           <p>Don't have an account? <Link to='/signup'>Sign up</Link></p>
          </form>
          {error && (
            <div className={classes.errorMessage}>
