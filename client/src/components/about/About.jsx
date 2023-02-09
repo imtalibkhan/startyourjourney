@@ -41,7 +41,8 @@ const About = () => {
             </select>
           </div>
           <div className={classes.inputContainer}>
-            <span>First day <BiHappy className={classes.icon}/></span>
+            <span>First day
+               <BiHappy className={classes.icon}/></span>
             <input type="text" placeholder="Type date..." onChange={(e) => setStartDate(e.target.value)}/>
           </div>
           <div className={classes.inputContainer}>
