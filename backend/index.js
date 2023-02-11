@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 const authController = require("./controller/authController");
 const roomController = require("./controller/roomcontroller");
+const uploadController = require("./controller/uploadController");
 const dotenv = require("dotenv").config();
 const app = express();
 
@@ -16,8 +17,10 @@ mongoose.connect(process.env.MONGO_URL, () =>
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
+app.use('/images', express.static('public/images'))
 app.use('/auth', authController)
 app.use('/room', roomController)
+app.use("/upload",uploadController)
 
 
 //2==> start our server

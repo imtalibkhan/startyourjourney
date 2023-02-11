@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import classes from "./types.module.css";
 import {Link} from "react-router-dom"
 import img1 from "../../assets/img7.jpg"
+import { useSelector } from "react-redux";
 
 const Types = () => {
-  const token =
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJhNTFlOTRjMDAzNTAyYzdmMDYyMiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTMzOTAzOH0.3kQZzpFAhxG0MiddPlpsulCxXu9fQpIyIuucDpN4CCk";
+  // const token =
+  //   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZGJhNTFlOTRjMDAzNTAyYzdmMDYyMiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY3NTMzOTAzOH0.3kQZzpFAhxG0MiddPlpsulCxXu9fQpIyIuucDpN4CCk";
 
   const [types, setTypes] = useState([]);
+  const {token} = useSelector((state)=> state.auth)
 
   useEffect(() => {
     const fetchTypes = async () => {
@@ -34,7 +36,7 @@ const Types = () => {
       <div className={classes.wrapper}>
         <div className={classes.titles}>
           <h5 className={classes.subtitles}>Residing Plce</h5>
-          <h2 className={classes.title}>what type of place do you want</h2>
+          <h2 className={classes.title}>whatttt type of place do you want</h2>
         </div>
 
         <div className={classes.types}>
