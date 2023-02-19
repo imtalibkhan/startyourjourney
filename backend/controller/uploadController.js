@@ -18,7 +18,7 @@ const upload = multer({
 
 uploadController.post("/image", verifyToken, upload.single("image"), async (req, res) => {
     try {
-        return res.status(200).json("File uploded successfully");
+        return res.status(200).json({msg:"File uploded successfully"});
     } catch (error) {
         console.error(error);
     }

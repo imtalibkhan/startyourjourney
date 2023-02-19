@@ -31,7 +31,7 @@ const RoomSchema = new mongoose.Schema({
     min: 1,
     max: 5,
   },
-  unavailable: {
+  unavailableDates: {
     type: [Number],
     default: [],
   },

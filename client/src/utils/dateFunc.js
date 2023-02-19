@@ -1,5 +1,5 @@
 export const isUnavailable = (room, datesToCompare) => {
-    console.log(new Date(room.unavailableDates[0]).getTime())
+    // console.log(new Date(room.unavailableDates[0]).getTime())
     const isFound = room.unavailableDates.some((date) =>
     datesToCompare.includes(new Date(date).getTime())
     );

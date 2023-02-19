@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {AiOutlineCloseCircle} from 'react-icons/ai'
 import classes from "./create.module.css";
+import { useSelector } from "react-redux";
 
 const Create = () => {
   const [title, setTitle] = useState("");
@@ -9,10 +10,11 @@ const Create = () => {
   const [img, setImg] = useState("");
   const [country, setCountry] = useState("")
   const [type, setType] = useState("")
-  const [price, setPrice] = useState(0);
-  const [stars, setStars] = useState(0);
+  const [price, setPrice] = useState(null);
+  const [review, setreview] = useState(null);
   const [typeError, setTypeError] = useState(false)
   const navigate = useNavigate();
+  const {token} = useSelector((state)=> state.auth)
 
   const onChangeFileFirst = (e) => {
     setImg(e.target.files[0]);
@@ -32,8 +34,8 @@ const Create = () => {
 
     try {
       const formData = new FormData();
-
       let filename = null;
+
       if (img) {
         filename = Date.now() + img.name;
         // for first img
@@ -41,14 +43,21 @@ const Create = () => {
         formData.append("image", img);
 
         await fetch(`http://localhost:5000/upload/image`, {
+          headers: {
+          "Authorization": `Bearer ${token}`
+
+          },
           method: "POST",
           body: formData,
         });
+      }
+        
 
       // upload product and navigate to product
       const res = await fetch("http://localhost:5000/room", {
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
         },
         method: "POST",
         body: JSON.stringify({
@@ -58,12 +67,12 @@ const Create = () => {
           type,
           photo: filename,
           price,
-          stars,
+          review,
         }),
       });
       const room = await res.json();
-      navigate(`/typeDetail/${room?._id}`);
-    }
+      navigate(`/typeDetail/${room._id}`);
+   
 
     } catch (error) {
       console.error(error);
@@ -137,7 +146,7 @@ const Create = () => {
           <div className={classes.inputWrapper}>
             <label >Price: </label>
             <input
-              step={0.01}
+              step={0.1}
               name="price"
               onChange={(e) => setPrice(e.target.value)}
               className={classes.input}
@@ -146,16 +155,16 @@ const Create = () => {
             />
           </div>
           <div className={classes.inputWrapper}>
-            <label >Stars: </label>
+            <label >review: </label>
             <input
               min={1}
               max={5}
-              step={1}
-              name="stars"
-              onChange={(e) => setStars(e.target.value)}
+              step={0.1}
+              name="review"
+              onChange={(e) => setreview(e.target.value)}
               className={classes.input}
               type="number"
-              placeholder="stars..."
+              placeholder="review..."
             />
           </div>
           <div className={classes.buttonWrapper}>

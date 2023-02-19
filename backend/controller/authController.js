@@ -15,13 +15,11 @@ authController.post("/register", async (req, res) => {
       return res.status(404).json({ msg: "User already registered" });
     }
 
-    if (req.body.username === "" || req.body.email === "" || req.body.password === "") {
-      return res.status(500).json({ msg: "All fields must be populated" });
-    }
+   
 
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-    const user = await User.create({ ...req.body, password: hashedPassword });
+    const user = await User.create({...req.body, password: hashedPassword });
     await user.save();
 
 
@@ -33,7 +31,7 @@ authController.post("/register", async (req, res) => {
 
     return res.status(201).json({ others, token });
   } catch (error) {
-    return res.status(500).json(error);
+    return res.status(500).json(error.message);
   }
 });
 
@@ -62,6 +60,8 @@ authController.post("/login", async (req, res) => {
     return res.status(500).json(error);
   }
 });
+
+
 
 const createToken = (user) => {
   const payload = {
